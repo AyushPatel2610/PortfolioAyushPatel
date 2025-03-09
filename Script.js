@@ -1,4 +1,4 @@
-// Smooth scrolling for navigation links
+// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -9,17 +9,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Project Toggle Functionality
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-        const content = card.querySelector('.project-content');
+document.querySelectorAll('.project-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
         content.classList.toggle('active');
+        header.querySelector('i').classList.toggle('active');
     });
 });
 
-// Responsive Mobile Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
+// Mobile Menu Toggle (Add this new functionality)
+const hamburger = document.createElement('button');
+hamburger.className = 'hamburger';
+hamburger.innerHTML = `
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+`;
 
-menuToggle.addEventListener('click', () => {
+const menu = document.querySelector('.menu');
+hamburger.addEventListener('click', () => {
     menu.classList.toggle('active');
+    hamburger.classList.toggle('active');
 });
+
+document.querySelector('nav').appendChild(hamburger);
